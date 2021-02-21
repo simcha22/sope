@@ -6,6 +6,7 @@ function ProdsList(props) {
 
   return (
     <div className="col-lg-9 py-4">
+      <h2>מוצרים</h2>
       <div className="row">
           {ar.map(item => {
               return(
