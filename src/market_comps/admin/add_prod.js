@@ -1,20 +1,25 @@
-import Axios from "axios";
-import React, { useRef } from "react";
-import { URL_API } from "../../services/apiService";
+import React from "react";
+import { doApiPost, URL_API } from "../../services/apiService";
 import { useForm } from "react-hook-form";
+import { auth } from "../../services/authService";
 
 function AddProd(props) {
+  auth();
   const { register, handleSubmit, errors } = useForm();
 
   const formSubmit = (dataBody) => {
     let myUrl = URL_API + "/prods/add";
-    Axios({
-      url: myUrl,
-      method: "POST",
-      data: dataBody
-    })
-      .then((data) => {
+    //Axios({
+     // url: myUrl,
+    //  method: "POST",
+    //  data: dataBody
+    //})
+    doApiPost(myUrl,dataBody)
+      .then(data => {
         console.log(data);
+        if(data._id){
+          alert("המוצר נוסף בהצלחה")
+        }
       })
       .catch((err) => {
         console.log(err.response);
