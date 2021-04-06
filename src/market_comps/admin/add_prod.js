@@ -1,32 +1,45 @@
 import React from "react";
 import { doApiPost, URL_API } from "../../services/apiService";
 import { useForm } from "react-hook-form";
-import { auth } from "../../services/authService";
+//import { auth } from "../../services/authService";
+import Auth from "./auth";
+import { useHistory } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 function AddProd(props) {
-  auth();
+  const { addToast } = useToasts();
   const { register, handleSubmit, errors } = useForm();
+  let history = useHistory();
 
   const formSubmit = (dataBody) => {
     let myUrl = URL_API + "/prods/add";
     //Axios({
-     // url: myUrl,
+    // url: myUrl,
     //  method: "POST",
     //  data: dataBody
     //})
-    doApiPost(myUrl,dataBody)
-      .then(data => {
+    doApiPost(myUrl, dataBody)
+      .then((data) => {
         console.log(data);
-        if(data._id){
-          alert("המוצר נוסף בהצלחה")
+        if (data._id) {
+          addToast("המוצר נוסף בהצלחה", {
+            appearance: "info",
+            autoDismiss: true,
+          });
+          history.push("/admin/prodUserList");
         }
       })
       .catch((err) => {
         console.log(err.response);
+        addToast("שגיאה בהוספת מוצר", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
   };
   return (
     <div className="container">
+      <Auth />
       <h2>add prod:</h2>
       <div className="col-lg-6 shadow p-4">
         <form onSubmit={handleSubmit(formSubmit)}>

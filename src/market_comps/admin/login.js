@@ -2,9 +2,10 @@ import React from "react";
 import { doApiPost, URL_API } from "../../services/apiService";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 function Login(props) {
-
+  const { addToast } = useToasts();
   let history = useHistory();
 
   const { register, handleSubmit, errors } = useForm();
@@ -18,6 +19,10 @@ function Login(props) {
           //console.log(data.data?.token)
           localStorage.setItem("tok", data.token);
          history.push("/admin/add_prod");
+         addToast("ברוכים הבאים לאתר", {
+          appearance: "success",
+          autoDismiss: true,
+        });
         }
       })
       .catch((err) => {

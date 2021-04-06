@@ -20,7 +20,7 @@ function HeaderMarket(props) {
               <Link to="/cat/food">אוכל</Link>
               <Link to="/cat/animals">מסיבות</Link>
               <Link to="/cat/clothing">משלימים</Link>
-              <Link to="/admin/add_prod">add prod</Link>
+              <Link to="/admin/prodUserList">המוצרים שלי</Link>
               <Link to="/admin/login">login</Link>
             </nav>
           </div>

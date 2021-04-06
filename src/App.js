@@ -1,10 +1,12 @@
 import "./App.css";
+import AppContext from "./context_redux/appContext";
 import AppMarket from "./market_comps/appMarket";
 
 function App() {
   return (
     <div className="">
-      <AppMarket />
+      {/*<AppMarket />*/}
+      <AppContext/>
     </div>
   );
 }
