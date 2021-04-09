@@ -5,7 +5,7 @@ export default function MainComponent() {
     <>
       <main>
         <div className="container">
-          <div className="text-center">ברוכים הבאים לאתר ארי שבחבורה</div>
+          ברוכים הבאים לאתר ארי שבחבורה 
         </div>
       </main>
     </>

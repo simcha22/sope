@@ -11,7 +11,7 @@ export default function FooterComponent() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md text-center m-3">
-              <img className="w-50" src="..." />
+              <div className="logo-img-footer"></div>
               <div className="p-2 text-color">
                 כל הזכויות שמורות למערכת ארזי הלבנון
               </div>
