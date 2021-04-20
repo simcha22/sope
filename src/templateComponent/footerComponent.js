@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ListLinks from "./footer/listLinks";
 
 export default function FooterComponent() {
@@ -21,25 +22,25 @@ export default function FooterComponent() {
               <h5>עמודים</h5>
               <ul className="list-unstyled text-small">
                 <li>
-                  <a href="#">דף הבית</a>
+                  <Link to="/home">דף הבית</Link>
                 </li>
                 <li>
-                  <a href="#">אודות</a>
+                  <Link to="/about">אודות</Link>
                 </li>
                 <li>
-                  <a href="#">שיעורים</a>
+                  <Link to="/lessons">שיעורים</Link>
                 </li>
                 <li>
-                  <a href="">שידור חי</a>
+                  <Link to="#">שידור חי</Link>
                 </li>
                 <li>
-                  <a href="">כניסה</a>
+                  <Link to="/login">כניסה</Link>
                 </li>
                 <li>
-                  <a href="">הרשמה</a>
+                  <Link to="/signup">הרשמה</Link>
                 </li>
                 <li>
-                  <a href="">מערכת ניהול</a>
+                  <Link to="">מערכת ניהול</Link>
                 </li>
               </ul>
             </div>

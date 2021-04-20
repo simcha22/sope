@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomeComponent from "../pagesComponent/homeComponent";
 import AboutComponent from "../pagesComponent/aboutComponent";
 import LessonMainComponent from "../lessonsComponent/lessonMainComponent";
+import SignupComponent from "../pagesComponent/signupComponent";
+import LoginComponent from "../pagesComponent/loginComponent";
 
 export default function AppComponent() {
   return (
@@ -16,6 +18,8 @@ export default function AppComponent() {
         <Route exact path="/home" component={HomeComponent} />
         <Route exact path="/about" component={AboutComponent} />
         <Route exact path="/lessons" component={LessonMainComponent} />
+        <Route exact path="/signup" component={SignupComponent} />
+        <Route exact path="/login" component={LoginComponent} />
       </Switch>
       <FooterComponent />
     </Router>
