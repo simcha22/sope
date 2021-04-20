@@ -1,6 +1,31 @@
-import React from "react";
+import Axios from "axios";
+import React,{useRef} from "react";
 
 export default function SignupComponent() {
+  let formRef = useRef(null);
+
+  const formSubmit = (e)=>{
+    e.preventDefault();
+    let myUrl = ' http://127.0.0.1:8000/api/signup';
+    let dateBody = {
+      firstname: formRef.current[0].value,
+      lastname: formRef.current[1].value,
+      email: formRef.current[2].value,
+      password: formRef.current[3].value,
+      approval: formRef.current[4].value
+    }
+
+    Axios({
+      url:myUrl,
+      method:"POST",
+      data: dateBody
+    })
+    .then(data =>{
+      console.log(data);
+    }).catch(err =>{
+      console.log(err.response);
+    })
+  }
   return (
     <div>
       <div className="container">
@@ -12,17 +37,29 @@ export default function SignupComponent() {
           <div className="col-lg-4">
             <div className="shadow p-3 mb-5 bg-white rounded">
               <div>
-                <form>
+                <form ref={formRef} onSubmit={formSubmit}>
                   <div className="mb-3">
-                    <label htmlFor="name" className="form-label">
-                      שם מלא:
+                    <label htmlFor="firstname" className="form-label">
+                      שם פרטי:
                     </label>
                     <input
                       type="text"
                       className="form-control"
-                      id="name"
-                      name="name"
+                      id="firstname"
+                      name="firstname"
                     />
+                    
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="lastname" className="form-label">
+                      שם משפחה:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="lastname"
+                      name="lastname"
+                    /> 
                   </div>
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">
@@ -34,20 +71,22 @@ export default function SignupComponent() {
                       id="email"
                       name="email"
                     />
+                    
                     <div className="form-text">
                       לא נשתף את כתובת המייל שלך עם אף אחד
                     </div>
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="password1" className="form-label">
+                    <label htmlFor="password" className="form-label">
                       הקלד סיסמא:
                     </label>
                     <input
                       type="password"
                       className="form-control"
-                      id="password1"
+                      id="password"
                       name="password"
                     />
+                    
                   </div>
                   <div className="mb-3">
                     <input
@@ -57,13 +96,12 @@ export default function SignupComponent() {
                       name="approval"
                     />
                     <label className="form-check-label" htmlFor="approval">
-                      {" "}
                       מאשר לקבל עדכונים במייל
                     </label>
                   </div>
-                  <button type="submit" className="btn btn-outline-primary">
-                    הרשם
-                  </button>
+                  <input type="submit" className="btn btn-outline-primary"
+                    defaultValue="הרשם"
+                  />
                 </form>
               </div>
             </div>

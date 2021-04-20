@@ -1,6 +1,28 @@
-import React from "react";
+import Axios from "axios";
+import React,{useRef} from "react";
 
 export default function LoginComponent() {
+  let formRef = useRef(null);
+
+  const formSubmit = (e) =>{
+    e.preventDefault();
+    let myUrl = 'http://127.0.0.1:8000/api/login';
+    let dateBody = {
+      email: formRef.current[0].value,
+      password: formRef.current[1].value,
+    }
+
+    Axios({
+      url:myUrl,
+      method:"POST",
+      data: dateBody
+    })
+    .then(data =>{
+      console.log(data);
+    }).catch(err =>{
+      console.log(err.response);
+    })
+  }
   return (
     <div>
       <div className="container">
@@ -12,7 +34,7 @@ export default function LoginComponent() {
           <div className="col-lg-4">
             <div className="shadow p-3 mb-5 bg-white rounded">
               <div>
-                <form>
+                <form ref={formRef} onSubmit={formSubmit}>
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">
                       כתובת מייל:
@@ -35,9 +57,7 @@ export default function LoginComponent() {
                       name="password"
                     />
                   </div>
-                  <button type="submit" className="btn btn-outline-primary">
-                    כניסה
-                  </button>
+                  <input type="submit" className="btn btn-outline-primary" defaultValue="הכנס"/>
                 </form>
               </div>
             </div>

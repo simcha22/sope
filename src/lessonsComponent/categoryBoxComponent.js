@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CategoryBoxComponent() {
+export default function CategoryBoxComponent(props) {
   return (
     <div class="col-lg-4 mb-2">
       <div class="card text-center">
@@ -11,7 +11,7 @@ export default function CategoryBoxComponent() {
             ללמוד את הדף היומי. מתעדכן כל יום לפי הדף של אותו יום בשפות אידיש
             ועברית, מאת גדולי מגידי השיעורים של זמננו, בשפה קולחת וברורה
           </p>
-          <Link to="#" class="btn btn-primary">
+          <Link to="/lessons/דף_היומי" class="btn btn-primary">
             התחל כעת
           </Link>
         </div>
