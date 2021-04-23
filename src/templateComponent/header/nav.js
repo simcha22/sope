@@ -27,9 +27,9 @@ export default function Nav() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 fs-4 ">
-              <NavLink name={"דף הבית"} address={"home"} />
-              <NavLink name={"אודות"} address={"about"} />
-              <NavLink name={"שיעורים ודרשות"} address={"lessons"} />
+              <NavLink name={"דף הבית"} address={"/home"} />
+              <NavLink name={"אודות"} address={"/about"} />
+              <NavLink name={"שיעורים ודרשות"} address={"/lessons"} />
               <NavLink name={"שידור חי"} address={"#"} />
               <NavLink name={"ספרים"} address={"#"} />
               <NavLink name={"רבנים"} address={"#"} />

@@ -9,6 +9,7 @@ import LessonMainComponent from "../lessonsComponent/lessonMainComponent";
 import SignupComponent from "../pagesComponent/signupComponent";
 import LoginComponent from "../pagesComponent/loginComponent";
 import LessonsByCategory from "../lessonsComponent/lessonsByCategory";
+import LessonPage from "../lessonsComponent/lessonPage";
 
 export default function AppComponent() {
   return (
@@ -22,7 +23,7 @@ export default function AppComponent() {
         <Route exact path="/lessons/:cat" component={LessonsByCategory}/>
         <Route exact path="/signup" component={SignupComponent} />
         <Route exact path="/login" component={LoginComponent} />
-
+        <Route exact path="/lesson/:name" component={LessonPage}/>
       </Switch>
       <FooterComponent />
     </Router>
