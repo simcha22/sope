@@ -1,31 +1,24 @@
 import Axios from "axios";
-import React,{useRef} from "react";
+import React, { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import { doApiPost, URL_API } from "../services/apiService";
 
 export default function SignupComponent() {
-  let formRef = useRef(null);
+  const { register, handleSubmit, errors } = useForm();
+  let history = useHistory();
 
-  const formSubmit = (e)=>{
-    e.preventDefault();
-    let myUrl = ' http://127.0.0.1:8000/api/signup';
-    let dateBody = {
-      firstname: formRef.current[0].value,
-      lastname: formRef.current[1].value,
-      email: formRef.current[2].value,
-      password: formRef.current[3].value,
-      approval: formRef.current[4].value
-    }
-
-    Axios({
-      url:myUrl,
-      method:"POST",
-      data: dateBody
-    })
-    .then(data =>{
-      console.log(data);
-    }).catch(err =>{
-      console.log(err.response);
-    })
-  }
+  const formSubmit = (dataBody) => {
+    let myUrl = URL_API + "/users/create";
+    console.log(dataBody);
+    doApiPost(myUrl, dataBody)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log("ERROR::", error.response);
+      });
+  };
   return (
     <div>
       <div className="container">
@@ -37,41 +30,61 @@ export default function SignupComponent() {
           <div className="col-lg-4">
             <div className="shadow p-3 mb-5 bg-white rounded">
               <div>
-                <form ref={formRef} onSubmit={formSubmit}>
+                <form onSubmit={handleSubmit(formSubmit)}>
                   <div className="mb-3">
                     <label htmlFor="firstname" className="form-label">
                       שם פרטי:
                     </label>
                     <input
+                      ref={register({ required: true, minLength: 4 })}
                       type="text"
                       className="form-control"
                       id="firstname"
                       name="firstname"
                     />
-                    
+                    {errors.firstname && (
+                      <span className="text-danger">
+                        {" "}
+                        * אנא הקלד שם פרטי בעל 4 אותיות לפחות
+                      </span>
+                    )}
                   </div>
                   <div className="mb-3">
                     <label htmlFor="lastname" className="form-label">
                       שם משפחה:
                     </label>
                     <input
+                      ref={register({ required: true, minLength: 4 })}
                       type="text"
                       className="form-control"
                       id="lastname"
                       name="lastname"
-                    /> 
+                    />
+                    {errors.lastname && (
+                      <span className="text-danger">
+                        {" "}
+                        * אנא הקלד שם משפחה בעל 4 אותיות לפחות
+                      </span>
+                    )}
                   </div>
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">
                       כתובת מייל:
                     </label>
                     <input
+                      ref={register({ required: true })}
                       type="email"
                       className="form-control"
                       id="email"
                       name="email"
+                      required
                     />
-                    
+                    {errors.email && (
+                      <span className="text-danger">
+                        {" "}
+                        * אנא הקלד כתובת מייל תיקנית
+                      </span>
+                    )}
                     <div className="form-text">
                       לא נשתף את כתובת המייל שלך עם אף אחד
                     </div>
@@ -81,12 +94,18 @@ export default function SignupComponent() {
                       הקלד סיסמא:
                     </label>
                     <input
+                      ref={register({ required: true, minLength: 4 })}
                       type="password"
                       className="form-control"
                       id="password"
                       name="password"
                     />
-                    
+                    {errors.password && (
+                      <span className="text-danger">
+                        {" "}
+                        * הקלד סיסמא עם לפחות 4 תוים ואותיות או מספרים
+                      </span>
+                    )}
                   </div>
                   <div className="mb-3">
                     <input
@@ -99,7 +118,9 @@ export default function SignupComponent() {
                       מאשר לקבל עדכונים במייל
                     </label>
                   </div>
-                  <input type="submit" className="btn btn-outline-primary"
+                  <input
+                    type="submit"
+                    className="btn btn-outline-primary"
                     defaultValue="הרשם"
                   />
                 </form>

@@ -23,10 +23,10 @@ export default function LessonBox(props) {
           <p>{lesson_duration}</p>
           <p className="card-text">שפת השיעור: {lesson_language}</p>
           <div className="d-flex gap-2 col-6 mx-auto">
-            <button type="button" class="btn btn-primary position-relative">
+            <button type="button" className="btn btn-primary position-relative">
               לייקים
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                {lesson_likes}+ <span class="visually-hidden">unread messages</span>
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                {lesson_likes}+ <span className="visually-hidden">unread messages</span>
               </span>
             </button>
             <Link to="/lesson/{lesson_id}" className="btn btn-outline-info">

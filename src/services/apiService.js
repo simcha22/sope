@@ -9,13 +9,10 @@ export const doApiPost = async (_url, _body = {}, _method = "POST") =>{
             url: _url,
             data: _body,
             method: _method,
-            Headers:{
-                'X-CSRF-TOKEN': ('meta[name="csrf-token"]').attr('content')
-            },
         });
         return data.data;
     }catch(err){
-        console.log(err);
+        console.log(err.response);
     }
 
 }
