@@ -1,12 +1,15 @@
 import Axios from "axios";
 import React,{useRef} from "react";
+import { useHistory } from "react-router-dom";
+import { doApiPost, URL_API } from "../services/apiService";
 
 export default function LoginComponent() {
   let formRef = useRef(null);
+  let history = useHistory();
 
   const formSubmit = (e) =>{
     e.preventDefault();
-    let myUrl = 'http://127.0.0.1:8000/api/login';
+    let myUrl = URL_API + '/user/login';
     let dateBody = {
       email: formRef.current[0].value,
       password: formRef.current[1].value,
@@ -18,7 +21,8 @@ export default function LoginComponent() {
       data: dateBody
     })
     .then(data =>{
-      console.log(data);
+      console.log(data.data);
+      history.push("/lessons");
     }).catch(err =>{
       console.log(err.response);
     })
